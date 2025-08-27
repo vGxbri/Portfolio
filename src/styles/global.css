@@ -1,0 +1,16 @@
+@import "tailwindcss";
+
+:root {
+  /* Colores */
+  --color-blue-500: #3245ff;
+  --color-blue-600: #2a3ad0;
+  --color-dwad-500: #ff3245;
+  
+  /* Fuentes */
+  --font-sans: "Inter", sans-serif;
+}
+
+/* Estilos globales */
+body {
+  font-family: var(--font-sans);
+}

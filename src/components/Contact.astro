@@ -1,0 +1,70 @@
+---
+// Contact component
+---
+
+<section id="contacto" class="py-20 bg-gray-50 dark:bg-gray-800">
+  <div class="container mx-auto px-4 md:px-6">
+    <h2 class="text-4xl font-bold text-center mb-12 relative after:content-[''] after:absolute after:bottom-[-10px] after:left-1/2 after:transform after:-translate-x-1/2 after:w-20 after:h-1 after:bg-blue-500 after:rounded-md">Contacto</h2>
+    
+    <div class="grid md:grid-cols-2 gap-12">
+      <div class="space-y-6">
+        <h3 class="text-2xl font-semibold">¡Hablemos!</h3>
+        <p class="text-lg text-gray-600 dark:text-gray-300">
+          ¿Tienes un proyecto en mente o simplemente quieres charlar sobre tecnología? No dudes en contactarme a través de cualquiera de estos canales.
+        </p>
+        
+        <div class="flex flex-col space-y-6">
+          <div class="flex items-center gap-4">
+            <div class="w-12 h-12 rounded-full bg-white dark:bg-gray-700 flex justify-center items-center text-2xl shadow-sm">📧</div>
+            <div>
+              <h4 class="text-lg font-semibold mb-1">Email</h4>
+              <a href="mailto:gabriel@example.com" class="text-blue-500 hover:underline">gabriel@example.com</a>
+            </div>
+          </div>
+          
+          <div class="flex items-center gap-4">
+            <div class="w-12 h-12 rounded-full bg-white dark:bg-gray-700 flex justify-center items-center text-2xl shadow-sm">💼</div>
+            <div>
+              <h4 class="text-lg font-semibold mb-1">LinkedIn</h4>
+              <a href="https://linkedin.com/in/gabrielalmarcha" target="_blank" rel="noopener noreferrer" class="text-blue-500 hover:underline">linkedin.com/in/gabrielalmarcha</a>
+            </div>
+          </div>
+          
+          <div class="flex items-center gap-4">
+            <div class="w-12 h-12 rounded-full bg-white dark:bg-gray-700 flex justify-center items-center text-2xl shadow-sm">💻</div>
+            <div>
+              <h4 class="text-lg font-semibold mb-1">GitHub</h4>
+              <a href="https://github.com/gabrielalmarcha" target="_blank" rel="noopener noreferrer" class="text-blue-500 hover:underline">github.com/gabrielalmarcha</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="bg-white dark:bg-gray-900 rounded-lg p-8 shadow-md">
+        <form class="flex flex-col space-y-6">
+          <div class="flex flex-col space-y-2">
+            <label for="name" class="text-sm font-medium">Nombre</label>
+            <input type="text" id="name" name="name" required class="px-3 py-2 border border-gray-300 dark:border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" />
+          </div>
+          
+          <div class="flex flex-col space-y-2">
+            <label for="email" class="text-sm font-medium">Email</label>
+            <input type="email" id="email" name="email" required class="px-3 py-2 border border-gray-300 dark:border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" />
+          </div>
+          
+          <div class="flex flex-col space-y-2">
+            <label for="subject" class="text-sm font-medium">Asunto</label>
+            <input type="text" id="subject" name="subject" required class="px-3 py-2 border border-gray-300 dark:border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" />
+          </div>
+          
+          <div class="flex flex-col space-y-2">
+            <label for="message" class="text-sm font-medium">Mensaje</label>
+            <textarea id="message" name="message" rows="5" required class="px-3 py-2 border border-gray-300 dark:border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"></textarea>
+          </div>
+          
+          <button type="submit" class="mt-2 self-start md:self-auto md:w-auto w-full px-6 py-3 bg-blue-500 hover:bg-blue-600 text-white font-medium rounded-md transition-colors duration-300">Enviar mensaje</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
