@@ -1,16 +1,21 @@
 @import "tailwindcss";
 
-:root {
+@theme {
   /* Colores */
-  --color-blue-500: #3245ff;
-  --color-blue-600: #2a3ad0;
-  --color-dwad-500: #ff3245;
+  --color-text: #f5f0f0;
+  --color-background: #130505;
+  --color-primary: #f6989b;
+  --color-secondary: #791519;
+  --color-accent: #fd6368;
   
   /* Fuentes */
   --font-sans: "Inter", sans-serif;
+  --font-modamode: "Modamode", sans-serif;
 }
 
 /* Estilos globales */
 body {
   font-family: var(--font-sans);
+  background-color: var(--color-background);
+  color: var(--color-text);
 }
