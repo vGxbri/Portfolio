@@ -1,5 +1,7 @@
 ---
 import '../styles/global.css'
+import Menu from '../components/Menu.astro';
+import Background from '../components/Background.astro';
 ---
 
 <!doctype html>
@@ -17,7 +19,11 @@ import '../styles/global.css'
 		<link href="https://fonts.cdnfonts.com/css/modamode" rel="stylesheet">
 	</head>
 	<body class="m-0 p-0 overflow-x-hidden">
-		<slot />
+			<Background />
+			<Menu client:load />
+			<main class="relative z-10">
+				<slot />
+			</main>
 	</body>
 </html>
 

@@ -50,6 +50,7 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
 }: StaggeredMenuProps) => {
   const [open, setOpen] = useState(false);
   const [isAnimating, setIsAnimating] = useState(false);
+  const [isInitialized, setIsInitialized] = useState(false);
   const openRef = useRef(false);
 
   const panelRef = useRef<HTMLDivElement | null>(null);
@@ -103,6 +104,9 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
       gsap.set(textInner, { yPercent: 0 });
 
       if (toggleBtnRef.current) gsap.set(toggleBtnRef.current, { color: menuButtonColor });
+      
+      // Marcar como inicializado después de aplicar todas las configuraciones
+      setIsInitialized(true);
     });
     return () => ctx.revert();
   }, [menuButtonColor, position]);
@@ -368,7 +372,7 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
         }}
       />
       <div
-        className={(className ? className + ' ' : '') + 'staggered-menu-wrapper'}
+        className={`${className ? className + ' ' : ''}staggered-menu-wrapper ${!isInitialized ? 'opacity-0 pointer-events-none' : ''}`}
         style={{
           ...(accentColor ? { ['--sm-accent' as any]: accentColor } : {}),
           position: (open || isAnimating) ? 'fixed' : 'relative',
@@ -376,7 +380,8 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
           left: (open || isAnimating) ? 0 : undefined,
           width: (open || isAnimating) ? '100vw' : '100%',
           height: (open || isAnimating) ? '100vh' : '100%',
-          zIndex: (open || isAnimating) ? 9999 : 40
+          zIndex: (open || isAnimating) ? 9999 : 40,
+          transition: isInitialized ? 'opacity 0.1s ease-in-out' : 'none'
         }}
         data-position={position}
         data-open={open || undefined}
@@ -403,14 +408,12 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
           })()}
         </div>
 
-        <header
-          className="staggered-menu-header absolute top-0 left-0 w-full flex items-center justify-between p-[2em] bg-transparent pointer-events-none z-20"
-          aria-label="Main navigation header"
-        >
+        {/* Botón del menú alineado con el texto del menú */}
+        <div className="fixed top-4 left-[1em] z-50 pointer-events-auto">
           <button
             ref={toggleBtnRef}
-            className="sm-toggle relative inline-flex items-center gap-[0.3rem] bg-transparent border-0 cursor-pointer font-medium leading-none overflow-visible pointer-events-auto"
-            aria-label={open ? 'Cerrar menú' : 'Open menu'}
+            className="w-[70px] h-[70px] flex items-center justify-center bg-transparent border-0 cursor-pointer rounded-full transition-colors duration-200"
+            aria-label={open ? 'Cerrar menú' : 'Abrir menú'}
             aria-expanded={open}
             aria-controls="staggered-menu-panel"
             onClick={toggleMenu}
@@ -418,39 +421,46 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
             style={open ? { color: 'var(--color-background)' } : { color: 'var(--color-text)' }}
           >
             <span
-              ref={textWrapRef}
-              className="sm-toggle-textWrap relative inline-block h-[1em] overflow-hidden whitespace-nowrap w-[var(--sm-toggle-width,auto)] min-w-[var(--sm-toggle-width,auto)]"
-              aria-hidden="true"
-            >
-              <span ref={textInnerRef} className="sm-toggle-textInner flex flex-col leading-none">
-                {textLines.map((l, i) => (
-                  <span
-                    className="sm-toggle-line block h-[1em] leading-none"
-                    key={i}
-                    style={open && l === 'Cerrar' ? { color: 'var(--color-text)' } : {}}
-                  >
-                    {l}
-                  </span>
-                ))}
-              </span>
-            </span>
-
-            <span
               ref={iconRef}
-              className="sm-icon relative w-[14px] h-[14px] shrink-0 inline-flex items-center justify-center [will-change:transform]"
+              className="relative w-[40px] h-[40px] flex items-center justify-center [will-change:transform]"
               aria-hidden="true"
               style={open ? { color: 'var(--color-text)' } : {}}
             >
               <span
                 ref={plusHRef}
-                className="sm-icon-line absolute left-1/2 top-1/2 w-full h-[2px] bg-current rounded-[2px] -translate-x-1/2 -translate-y-1/2 [will-change:transform]"
+                className="absolute left-1/2 top-1/2 w-full h-[4px] bg-current rounded-[2px] -translate-x-1/2 -translate-y-1/2 [will-change:transform]"
               />
               <span
                 ref={plusVRef}
-                className="sm-icon-line sm-icon-line-v absolute left-1/2 top-1/2 w-full h-[2px] bg-current rounded-[2px] -translate-x-1/2 -translate-y-1/2 [will-change:transform]"
+                className="absolute left-1/2 top-1/2 w-full h-[4px] bg-current rounded-[2px] -translate-x-1/2 -translate-y-1/2 [will-change:transform]"
               />
             </span>
           </button>
+        </div>
+
+        {/* Mantener el header original para compatibilidad con las animaciones */}
+        <header
+          className="staggered-menu-header absolute top-0 left-0 w-full flex items-center justify-center p-[2em] bg-transparent pointer-events-none z-20"
+          aria-label="Main navigation header"
+        >
+          <span
+            ref={textWrapRef}
+            className="sm-toggle-textWrap relative inline-block h-[1em] overflow-hidden whitespace-nowrap w-[var(--sm-toggle-width,auto)] min-w-[var(--sm-toggle-width,auto)]"
+            aria-hidden="true"
+            style={{ display: 'none' }}
+          >
+            <span ref={textInnerRef} className="sm-toggle-textInner flex flex-col leading-none">
+              {textLines.map((l, i) => (
+                <span
+                  className="sm-toggle-line block h-[1em] leading-none"
+                  key={i}
+                  style={open && l === 'Cerrar' ? { color: 'var(--color-text)' } : {}}
+                >
+                  {l}
+                </span>
+              ))}
+            </span>
+          </span>
         </header>
 
         <aside
@@ -542,7 +552,7 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
 }
-.sm-scope .sm-icon { position: relative; width: 14px; height: 14px; flex: 0 0 14px; display: inline-flex; align-items: center; justify-content: center; will-change: transform; }
+.sm-scope .sm-icon { position: relative; width: 70px; height: 70px; flex: 0 0 70px; display: inline-flex; align-items: center; justify-content: center; will-change: transform; }
 .sm-scope .sm-panel-itemWrap { position: relative; overflow: hidden; line-height: 1; }
 .sm-scope .sm-icon-line { position: absolute; left: 50%; top: 50%; width: 100%; height: 2px; background: currentColor; border-radius: 2px; transform: translate(-50%, -50%); will-change: transform; }
 .sm-scope .sm-line { display: none !important; }
