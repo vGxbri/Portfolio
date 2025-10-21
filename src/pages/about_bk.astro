@@ -1,0 +1,174 @@
+---
+import Layout from '@/layouts/Layout.astro';
+---
+
+<Layout>
+  <main class="relative z-10">
+    <!-- Título principal -->
+    <section class="w-screen flex items-start justify-end relative overflow-hidden">
+      <div class="p-4 pt-6 relative z-10">
+        <h1 class="text-8xl md:text-9xl lg:text-[12rem] font-extrabold leading-none drop-shadow-lg bg-gradient-to-r from-primary via-text to-primary bg-clip-text text-transparent font-modamode tracking-tight select-none">
+          SOBRE MÍ
+        </h1>
+      </div>
+    </section>
+
+    <!-- Contenido principal -->
+    <section class="w-screen px-8 md:px-16 lg:px-24 py-16 flex items-center">
+      <div class="max-w-8xl mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+        
+        <!-- Columna izquierda - Texto -->
+        <div class="space-y-8">
+          <!-- Presentación -->
+          <div class="space-y-4">
+            <h2 class="text-4xl md:text-5xl font-bold text-primary font-modamode tracking-tight">
+              Programador en Prácticas
+            </h2>
+            <p class="text-lg md:text-xl text-text leading-relaxed">
+              Soy una persona organizada y proactiva, con habilidades en planificación, coordinación y atención al detalle. 
+              Me adapto fácilmente a nuevos retos y entornos de trabajo dinámicos.
+            </p>
+          </div>
+
+          <!-- Estudios -->
+          <div class="space-y-6">
+            <h3 class="text-2xl md:text-3xl font-semibold text-primary font-modamode tracking-tight">
+              Formación Académica
+            </h3>
+            
+            <div class="space-y-4">
+              <div class="border-l-4 border-primary pl-6 py-2">
+                <h4 class="text-xl font-semibold text-text mb-1">Doble Grado Superior en Desarrollo de Aplicaciones Web/Multiplataforma</h4>
+                <p class="text-sm text-text/70">IES Virgen de la Paloma, Madrid</p>
+                <p class="text-sm text-text/70">2023 - Actualidad</p>
+              </div>
+              
+              <div class="border-l-4 border-primary pl-6 py-2">
+                <h4 class="text-xl font-semibold text-text mb-1">Grado Medio en Sistemas Microinformáticos y Redes</h4>
+                <p class="text-sm text-text/70">IES Calderón de la Barca, Pinto</p>
+                <p class="text-sm text-text/70">2021 - 2023</p>
+              </div>
+
+              <div class="border-l-4 border-primary pl-6 py-2">
+                <h4 class="text-xl font-semibold text-text mb-1">Educación Secundaria Obligatoria</h4>
+                <p class="text-sm text-text/70">IES Alpajés, Aranjuez</p>
+                <p class="text-sm text-text/70">2017 - 2021</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Experiencia -->
+          <div class="space-y-6">
+            <h3 class="text-2xl md:text-3xl font-semibold text-primary font-modamode tracking-tight">
+              Experiencia
+            </h3>
+            
+            <div class="space-y-4">
+              <div class="border-l-4 border-primary pl-6 py-2">
+                <h4 class="text-xl font-semibold text-text mb-1">Prácticas de Grado Superior</h4>
+                <p class="text-sm text-text/70">CRC Information Technologies</p>
+                <p class="text-sm text-text/70">Formación en Java, Javascript, Angular, AWS...</p>
+              </div>
+              
+              <div class="border-l-4 border-primary pl-6 py-2">
+                <h4 class="text-xl font-semibold text-text mb-1">Prácticas de Grado Medio - 2º Parte</h4>
+                <p class="text-sm text-text/70">Instituto privado, Getafe</p>
+                <p class="text-sm text-text/70">Mantenimiento de equipos y funciones de informático</p>
+              </div>
+
+              <div class="border-l-4 border-primary pl-6 py-2">
+                <h4 class="text-xl font-semibold text-text mb-1">Prácticas de Grado Medio - 1º Parte</h4>
+                <p class="text-sm text-text/70">Erasmus en Francia</p>
+                <p class="text-sm text-text/70">Colaboración en varios proyectos en un instituto</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Columna derecha -->
+        <div class="space-y-8">
+          <!-- Habilidades -->
+          <div class="space-y-6">
+            <h3 class="text-2xl md:text-3xl font-semibold text-primary font-modamode tracking-tight">
+              Habilidades
+            </h3>
+            <div class="grid grid-cols-2 gap-4">
+              <div class="bg-secondary/50 backdrop-blur-sm rounded-lg p-4 text-center">
+                <p class="font-semibold text-text">Adaptabilidad</p>
+              </div>
+              <div class="bg-secondary/50 backdrop-blur-sm rounded-lg p-4 text-center">
+                <p class="font-semibold text-text">Independencia</p>
+              </div>
+              <div class="bg-secondary/50 backdrop-blur-sm rounded-lg p-4 text-center">
+                <p class="font-semibold text-text">Integridad</p>
+              </div>
+              <div class="bg-secondary/50 backdrop-blur-sm rounded-lg p-4 text-center">
+                <p class="font-semibold text-text">Liderazgo</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Idiomas -->
+          <div class="space-y-6">
+            <h3 class="text-2xl md:text-3xl font-semibold text-primary font-modamode tracking-tight">
+              Idiomas
+            </h3>
+            <div class="space-y-4">
+              <div>
+                <div class="flex justify-between mb-2">
+                  <span class="text-text font-semibold">Español</span>
+                  <span class="text-text/70 text-sm">Nativo</span>
+                </div>
+                <div class="w-full bg-secondary/30 rounded-full h-3">
+                  <div class="bg-primary h-3 rounded-full" style="width: 100%"></div>
+                </div>
+              </div>
+              <div>
+                <div class="flex justify-between mb-2">
+                  <span class="text-text font-semibold">Inglés</span>
+                  <span class="text-text/70 text-sm">B2</span>
+                </div>
+                <div class="w-full bg-secondary/30 rounded-full h-3">
+                  <div class="bg-primary h-3 rounded-full" style="width: 80%"></div>
+                </div>
+              </div>
+              <div>
+                <div class="flex justify-between mb-2">
+                  <span class="text-text font-semibold">Francés</span>
+                  <span class="text-text/70 text-sm">A2</span>
+                </div>
+                <div class="w-full bg-secondary/30 rounded-full h-3">
+                  <div class="bg-primary h-3 rounded-full" style="width: 55%"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Objetivo Profesional -->
+          <div class="space-y-4">
+            <h3 class="text-2xl md:text-3xl font-semibold text-primary font-modamode tracking-tight">
+              Objetivo Profesional
+            </h3>
+            <p class="text-lg text-text leading-relaxed">
+              Busco aportar mis conocimientos y experiencia trabajando en equipo para crecer profesionalmente 
+              aplicando todo lo estudiado previamente.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sección de Tecnologías (vacía por ahora) -->
+    <section class="w-screen px-8 md:px-16 lg:px-24 py-16">
+      <div class="max-w-8xl mx-auto w-full">
+        <h3 class="text-2xl md:text-3xl font-semibold text-primary font-modamode tracking-tight mb-8">
+          Tecnologías
+        </h3>
+        <div class="bg-secondary/20 backdrop-blur-sm rounded-lg p-8 text-center">
+          <p class="text-text/50 italic">Contenido pendiente de añadir...</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+</Layout>

@@ -1,10 +1,49 @@
 ---
 import Layout from '@/layouts/Layout.astro';
-import Hero from '@/components/Hero.astro';
 ---
 
 <Layout>
 	<main>
-		<Hero />
+		<section class="h-screen w-screen flex items-end relative overflow-hidden z-0" style="background: transparent;">
+			<div class="w-full p-4 pb-6 relative z-10">
+			  <div id="fit-container" class="w-full overflow-hidden">
+				<h1 id="fit-text" class="inline-block font-extrabold leading-none drop-shadow-lg bg-gradient-to-r from-primary via-text to-primary bg-clip-text text-transparent font-modamode tracking-tight select-none">
+				  GABRIEL ALMARCHA
+				</h1>
+			  </div>
+			</div>
+		  </section>
 	</main>
+
+	<script>
+		const fit = () => {
+		  const container = document.getElementById('fit-container');
+		  const text = document.getElementById('fit-text');
+		  if (!container || !text) return;
+		  text.style.transform = 'none';
+		  text.style.fontSize = '10px';
+		  text.style.whiteSpace = 'nowrap';
+		  text.style.display = 'inline-block';
+		  text.style.transformOrigin = 'left bottom';
+		  const base = container.clientWidth || window.innerWidth || 1000;
+		  text.style.fontSize = base + 'px';
+		  const textWidth = text.scrollWidth || text.offsetWidth;
+		  if (!textWidth) return;
+		  const scale = (container.clientWidth - 1) / textWidth;
+		  text.style.transform = `scale(${scale})`;
+		};
+		const initFit = () => {
+		  fit();
+		  const container = document.getElementById('fit-container');
+		  if (container && 'ResizeObserver' in window) {
+			new ResizeObserver(fit).observe(container);
+		  }
+		  window.addEventListener('resize', fit);
+		};
+		if (document.readyState !== 'loading') {
+		  initFit();
+		} else {
+		  document.addEventListener('DOMContentLoaded', initFit);
+		}
+	  </script>
 </Layout>
