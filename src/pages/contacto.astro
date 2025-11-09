@@ -1,0 +1,236 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import ContactIcon from '@/components/ContactIcon';
+---
+
+<Layout>
+  <main class="relative z-10">
+    <!-- Título principal -->
+    <section class="w-screen flex items-start justify-end relative overflow-hidden">
+      <div class="p-4 pt-6 relative z-10">
+        <h1 class="text-8xl md:text-9xl lg:text-[12rem] font-extrabold leading-none drop-shadow-lg bg-gradient-to-r from-primary via-text to-primary bg-clip-text text-transparent font-modamode tracking-tight select-none">
+          CONTACTO
+        </h1>
+      </div>
+    </section>
+
+    <!-- Hero Section con mensaje de bienvenida -->
+    <section class="relative py-24 px-8 overflow-hidden">
+      <div
+        class="absolute bottom-0 left-0 right-0 top-0 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:54px_54px] opacity-40"
+      ></div>
+      <div class="relative z-10 max-w-7xl mx-auto text-center">
+        <h2 class="text-4xl md:text-5xl lg:text-6xl font-semibold mb-6 font-modamode fade-in-up">
+          ¿Tienes un proyecto en mente?
+        </h2>
+        <p class="text-xl md:text-2xl text-text/80 max-w-3xl mx-auto leading-relaxed fade-in-up">
+          Estoy siempre abierto a nuevas oportunidades y colaboraciones. Si tienes una idea, un proyecto o simplemente quieres charlar, ¡no dudes en contactarme!
+        </p>
+      </div>
+    </section>
+
+    <!-- Información de Contacto y Redes Sociales -->
+    <section class="relative py-16 px-8 overflow-hidden bg-primary rounded-2xl">
+      <div
+        class="absolute bottom-0 left-0 right-0 top-0 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:54px_54px] opacity-40"
+      ></div>
+      <div class="relative z-10 max-w-6xl mx-auto">
+        <div class="text-center mb-12 fade-in-up">
+          <h2 class="text-4xl md:text-5xl lg:text-6xl font-semibold mb-4 font-modamode text-background">
+            CONTACTO
+          </h2>
+          <div class="w-24 h-1 bg-background mx-auto"></div>
+          <p class="text-background/80 mt-6 max-w-2xl mx-auto">
+            Conéctate conmigo a través de mis redes sociales o contáctame directamente.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
+          <!-- Email -->
+          <a 
+            href="mailto:almarchagabriel@gmail.com" 
+            class="group relative overflow-hidden bg-background/10 backdrop-blur-sm rounded-2xl p-6 border border-background/20 hover:border-background/40 transition-all duration-300 fade-in-up"
+          >
+            <div class="flex flex-col items-center justify-center text-center min-h-[140px]">
+              <div class="w-14 h-14 bg-background/20 rounded-xl flex items-center justify-center mb-3 group-hover:bg-background/30 transition-colors duration-300">
+                <ContactIcon iconName="Mail" className="w-7 h-7 text-background" client:load />
+              </div>
+              <h3 class="text-base font-semibold mb-2 text-background">Email</h3>
+              <p class="text-xs text-background/80 break-all">almarchagabriel@gmail.com</p>
+            </div>
+          </a>
+
+          <!-- LinkedIn -->
+          <a
+            href="https://www.linkedin.com/in/gabriel-almarcha-martinez-5915b91b7/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="group relative overflow-hidden bg-background/10 backdrop-blur-sm rounded-2xl p-6 border border-background/20 hover:border-background/40 transition-all duration-300 fade-in-up"
+          >
+            <div class="flex flex-col items-center justify-center text-center min-h-[140px]">
+              <div class="w-14 h-14 bg-background/20 rounded-xl flex items-center justify-center mb-3 group-hover:bg-background/30 transition-colors duration-300">
+                <ContactIcon iconName="Linkedin" className="w-7 h-7 text-background" client:load />
+              </div>
+              <h3 class="text-base font-semibold text-background">LinkedIn</h3>
+            </div>
+          </a>
+
+          <!-- GitHub -->
+          <a
+            href="https://github.com/vGxbri"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="group relative overflow-hidden bg-background/10 backdrop-blur-sm rounded-2xl p-6 border border-background/20 hover:border-background/40 transition-all duration-300 fade-in-up"
+          >
+            <div class="flex flex-col items-center justify-center text-center min-h-[140px]">
+              <div class="w-14 h-14 bg-background/20 rounded-xl flex items-center justify-center mb-3 group-hover:bg-background/30 transition-colors duration-300">
+                <ContactIcon iconName="Github" className="w-7 h-7 text-background" client:load />
+              </div>
+              <h3 class="text-base font-semibold text-background">GitHub</h3>
+            </div>
+          </a>
+
+          <!-- Instagram -->
+          <a
+            href="https://instagram.com/gxbri.alm"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="group relative overflow-hidden bg-background/10 backdrop-blur-sm rounded-2xl p-6 border border-background/20 hover:border-background/40 transition-all duration-300 fade-in-up"
+          >
+            <div class="flex flex-col items-center justify-center text-center min-h-[140px]">
+              <div class="w-14 h-14 bg-background/20 rounded-xl flex items-center justify-center mb-3 group-hover:bg-background/30 transition-colors duration-300">
+                <ContactIcon iconName="Instagram" className="w-7 h-7 text-background" client:load />
+              </div>
+              <h3 class="text-base font-semibold text-background">Instagram</h3>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <style>
+    @keyframes fade-in {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes fade-in-up {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fade-in-left {
+      from {
+        opacity: 0;
+        transform: translateX(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes fade-in-right {
+      from {
+        opacity: 0;
+        transform: translateX(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    .animate-fade-in {
+      animation: fade-in 1s ease-out;
+    }
+
+    /* Intersection Observer para animaciones on-scroll */
+    .fade-in-up,
+    .fade-in-left,
+    .fade-in-right {
+      opacity: 0;
+    }
+
+    .fade-in-up.visible {
+      animation: fade-in-up 0.8s ease-out forwards;
+    }
+
+    .fade-in-left.visible {
+      animation: fade-in-left 0.8s ease-out forwards;
+    }
+
+    .fade-in-right.visible {
+      animation: fade-in-right 0.8s ease-out forwards;
+    }
+  </style>
+
+  <script>
+    // Intersection Observer para animaciones on-scroll
+    function initAnimations() {
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const target = entry.target as HTMLElement;
+            // Agregar delay escalonado para las cards del grid
+            const grid = target.closest('.grid');
+            if (grid && target.classList.contains('fade-in-up')) {
+              const siblings = Array.from(grid.children);
+              const index = siblings.indexOf(target);
+              target.style.animationDelay = `${index * 100}ms`;
+            }
+            target.classList.add('visible');
+            // Dejar de observar una vez que se ha animado
+            observer.unobserve(target);
+          }
+        });
+      }, observerOptions);
+
+      const animatedElements = document.querySelectorAll('.fade-in-up, .fade-in-left, .fade-in-right');
+      animatedElements.forEach((el) => {
+        // Verificar si el elemento ya está visible
+        const rect = el.getBoundingClientRect();
+        const isVisible = rect.top < window.innerHeight && rect.bottom > 0;
+        
+        if (isVisible) {
+          // Si ya es visible, animarlo inmediatamente con un pequeño delay
+          setTimeout(() => {
+            const target = el as HTMLElement;
+            const grid = target.closest('.grid');
+            if (grid && target.classList.contains('fade-in-up')) {
+              const siblings = Array.from(grid.children);
+              const index = siblings.indexOf(target);
+              target.style.animationDelay = `${index * 100}ms`;
+            }
+            target.classList.add('visible');
+          }, 100);
+        } else {
+          // Si no es visible, observarlo
+          observer.observe(el);
+        }
+      });
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initAnimations);
+    } else {
+      initAnimations();
+    }
+  </script>
+</Layout>

@@ -122,7 +122,7 @@ function StarsBackground({
         'relative size-full overflow-hidden bg-[radial-gradient(ellipse_at_bottom,_#262626_0%,_#000_100%)]',
         className,
       )}
-      onMouseMove={handleMouseMove}
+      onMouseMove={undefined}
       {...props}
     >
       <motion.div

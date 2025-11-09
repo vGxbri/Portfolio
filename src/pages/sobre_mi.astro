@@ -1,0 +1,344 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import { formacionAcademica, experienciaProfesional, habilidades, idiomas, objetivoProfesional, tecnologias } from "@/data/about";
+---
+
+<Layout>
+  <main class="relative z-10">
+    <!-- Título principal -->
+    <section class="w-screen flex items-start justify-end relative overflow-hidden">
+      <div class="p-4 pt-6 relative z-10">
+        <h1 class="text-8xl md:text-9xl lg:text-[12rem] font-extrabold leading-none drop-shadow-lg bg-gradient-to-r from-primary via-text to-primary bg-clip-text text-transparent font-modamode tracking-tight select-none">
+          SOBRE MÍ
+        </h1>
+      </div>
+    </section>
+
+    <script>
+      import Lenis from "lenis";
+
+      const lenis = new Lenis({
+        duration: 1.2,
+        easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      });
+
+      function raf(time: number) {
+        lenis.raf(time);
+        requestAnimationFrame(raf);
+      }
+
+      requestAnimationFrame(raf);
+    </script>
+
+    <!-- Sticky Element Section -->
+    <div class="wrapper">
+      <section
+        class="text-white py-64 w-full grid place-content-center sticky top-0"
+      >
+        <h1
+          class="2xl:text-7xl text-6xl px-8 font-semibold text-center tracking-tight leading-[120%]"
+        >
+          ¿Quieres conocer más sobre mí? <br /> ¡Continúa hacia abajo! <br /> ⬇
+        </h1>
+      </section>
+
+      <section
+        class="bg-primary text-background w-full sticky top-0 rounded-tr-2xl rounded-tl-2xl overflow-hidden"
+      >
+        <div
+          class="absolute bottom-0 left-0 right-0 top-0 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:54px_54px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]"
+        >
+        </div>
+        <div class="relative z-10 py-24 px-8 h-350">
+          <div class="max-w-7xl mx-auto w-full">
+            <!-- Header Section -->
+            <div class="text-center mb-18">
+                <h2 class="2xl:text-7xl text-5xl font-semibold text-center tracking-tight leading-[120%] mb-2 font-modamode">
+                  FORMACIÓN ACADÉMICA
+                </h2>
+            </div>
+
+            <!-- Timeline Container -->
+            <div class="relative flex-1">
+              <!-- Timeline Line -->
+              <div class="absolute left-1/2 top-0 bottom-0 transform -translate-x-1/2 w-1 bg-gradient-to-b from-background via-background/40 to-background/20 rounded-full hidden lg:block"></div>
+              
+              <!-- Education Items -->
+              <div class="space-y-8">
+                {formacionAcademica.map((formacion, index) => {
+                  const isEven = index % 2 === 0;
+                  return (
+                    <div class="relative flex flex-col lg:flex-row items-center lg:items-center">
+                      <!-- Timeline Dot -->
+                      <div class="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-6 h-6 bg-background rounded-full border-4 border-background/20 z-10 hidden lg:block"></div>
+                      
+                      <!-- Content Card -->
+                      <div class={`w-full lg:w-5/12 ${isEven ? 'lg:mr-auto lg:pr-16' : 'lg:ml-auto lg:pl-16'}`}>
+                        <div class="bg-background/5 backdrop-blur-sm rounded-2xl p-6 border border-background/20 hover:border-background/40 transition-all duration-300 group">
+                          <div class="flex items-start space-x-4">
+                            <div class="w-14 h-14 bg-background/20 rounded-xl flex items-center justify-center transition-transform duration-300">
+                              <span class="text-2xl">{formacion.icono}</span>
+                            </div>
+                            <div class="flex-1">
+                              <div class="flex items-center space-x-2 mb-2">
+                                {formacion.actual && <span class="px-3 py-1 bg-background/20 text-xs font-semibold rounded-full">ACTUAL</span>}
+                                <span class="text-sm text-background/60">{formacion.periodo}</span>
+                              </div>
+                              <h3 class="text-2xl font-bold mb-2">{formacion.titulo}</h3>
+                              <p class="text-lg text-background/80 mb-1">{formacion.descripcion}</p>
+                              <p class="text-sm text-background/60">{formacion.institucion}</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Experiencia Profesional -->
+      <section
+        class="bg-background text-text w-full sticky top-0 overflow-hidden"
+      >
+        <div
+          class="absolute bottom-0 left-0 right-0 top-0 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:54px_54px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]"
+        >
+        </div>
+        <div class="relative z-10 py-24 px-8">
+          <div class="max-w-7xl mx-auto w-full">
+            <!-- Header Section -->
+            <div class="mb-16">
+                <h2 class="2xl:text-7xl text-5xl font-semibold tracking-tight leading-[120%] mb-4 font-modamode">
+                  EXPERIENCIA
+                </h2>
+                <div class="w-24 h-1 bg-primary"></div>
+            </div>
+
+            <!-- Experience Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {experienciaProfesional.map((experiencia) => (
+                <div class="group relative overflow-hidden">
+                  <!-- Card Background with Hover Effect -->
+                  <div class="absolute inset-0 bg-gradient-to-br from-primary/10 to-primary/5 backdrop-blur-sm rounded-2xl transform transition-transform duration-500"></div>
+                  
+                  <!-- Border Glow Effect -->
+                  <div class="absolute inset-0 rounded-2xl border border-primary/20 group-hover:border-primary/40 transition-all duration-300"></div>
+                  
+                  <!-- Content Container -->
+                  <div class="relative p-8 h-full flex flex-col">
+                    <!-- Year Badge -->
+                    <div class="inline-block px-4 py-1 bg-primary/10 backdrop-blur-md rounded-full text-sm font-medium mb-6">
+                      {experiencia.periodo}
+                    </div>
+                    
+                    <!-- Title -->
+                    <h3 class="text-2xl font-bold mb-4">{experiencia.titulo}</h3>
+                    
+                    <!-- Company -->
+                    <div class="mb-4">
+                      <div class="flex items-center">
+                        <div class="w-1 h-6 bg-primary/50 mr-3"></div>
+                        <h4 class="text-lg font-medium">{experiencia.empresa}</h4>
+                      </div>
+                    </div>
+                    
+                    <!-- Description -->
+                    <p class="text-text/80 mb-6">{experiencia.descripcion}</p>
+                    
+                    <!-- Skills Tags -->
+                    <div class="mt-auto flex flex-wrap gap-2">
+                      {experiencia.habilidades.map((habilidad) => (
+                        <span class="px-3 py-1 bg-primary/10 rounded-full text-xs">{habilidad}</span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Habilidades y Perfil -->
+      <section
+        class="bg-primary text-background w-full sticky top-0 overflow-hidden"
+      >
+        <div
+          class="absolute bottom-0 left-0 right-0 top-0 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:54px_54px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]"
+        >
+        </div>
+        <div class="relative z-10 py-24 px-8">
+          <div class="max-w-7xl mx-auto w-full">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-16">
+              <!-- Columna Izquierda: Habilidades y Objetivo Profesional -->
+              <div class="space-y-12">
+                <!-- Habilidades (Soft Skills) -->
+                <div>
+                  <h2 class="text-4xl font-semibold tracking-tight leading-[120%] mb-6 font-modamode">
+                    HABILIDADES
+                  </h2>
+                  <div class="grid grid-cols-2 gap-4">
+                    {habilidades.map((habilidad) => (
+                      <div class="bg-background/5 backdrop-blur-sm rounded-lg p-4 border border-background/20 hover:border-background/40 transition-all duration-300 group">
+                        <h3 class="font-semibold mb-2 text-background group-hover:text-background/90 transition-colors text-sm">
+                          {habilidad.titulo}
+                        </h3>
+                        <p class="text-xs text-background/80 leading-relaxed">
+                          {habilidad.descripcion}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <!-- Objetivo Profesional -->
+                <div>
+                  <h2 class="text-4xl font-semibold tracking-tight leading-[120%] mb-6 font-modamode">
+                    OBJETIVO PROFESIONAL
+                  </h2>
+                  <div class="bg-background/5 backdrop-blur-sm rounded-lg p-6 border border-background/20">
+                    <p class="text-sm leading-relaxed text-background/90">
+                      {objetivoProfesional.descripcion}
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Columna Derecha: Idiomas -->
+              <div class="space-y-12">
+                <!-- Idiomas -->
+                <div>
+                  <h2 class="text-4xl font-semibold tracking-tight leading-[120%] mb-6 font-modamode">
+                    IDIOMAS
+                  </h2>
+                  <div class="space-y-4">
+                    {idiomas.map((idioma) => (
+                      <div class="bg-background/5 backdrop-blur-sm rounded-lg p-4 border border-background/20">
+                        <div class="flex justify-between items-center mb-2">
+                          <span class="font-semibold text-background">{idioma.idioma}</span>
+                          <span class="text-background/80 text-sm font-medium px-2 py-1 bg-background/20 rounded-full">
+                            {idioma.nivel}
+                          </span>
+                        </div>
+                        <div class="w-full bg-background/30 rounded-full h-2.5 overflow-hidden mb-4">
+                          <div 
+                            class="bg-background h-full rounded-full transition-all duration-1000 ease-out"
+                            style={`width: ${idioma.porcentaje}%`}
+                          ></div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Tecnologías -->
+      <section
+        class="bg-background text-text w-full sticky top-0 overflow-hidden"
+      >
+        <div
+          class="absolute bottom-0 left-0 right-0 top-0 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:54px_54px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]"
+        >
+        </div>
+        <div class="relative z-10 py-24 px-8">
+          <div class="max-w-7xl mx-auto w-full">
+            <!-- Header -->
+            <div class="mb-12 text-center">
+              <h2 class="2xl:text-7xl text-5xl font-semibold tracking-tight leading-[120%] mb-4 font-modamode">
+                TECNOLOGÍAS
+              </h2>
+              <div class="w-24 h-1 bg-primary mx-auto"></div>
+              <p class="text-text/70 mt-6 max-w-2xl mx-auto">
+                Stack tecnológico que domino y utilizo en mis proyectos
+              </p>
+            </div>
+
+            <!-- Tecnologías Grid -->
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
+              {tecnologias.map((tech) => (
+                <div class="group relative bg-gradient-to-br from-primary/10 to-primary/5 backdrop-blur-sm rounded-xl p-5 border border-primary/20 hover:border-primary/40 transition-all duration-300">
+                  <!-- Imagen de la tecnología -->
+                  <div class="flex justify-center mb-4">
+                    <div class="w-16 h-16 bg-background/10 rounded-lg p-3 flex items-center justify-center border border-primary/20 
+                    group-hover:border-primary/40 transition-all duration-300 shadow-sm group-hover:shadow-md">
+                      <img 
+                        src={tech.imagen} 
+                        alt={tech.nombre}
+                        class="w-full h-full object-contain opacity-80 group-hover:opacity-100 transition-opacity duration-300"
+                        loading="lazy"
+                      />
+                    </div>
+                  </div>
+                  
+                  <!-- Nombre -->
+                  <h3 class="text-center font-semibold mb-3 text-sm text-text group-hover:text-primary transition-colors duration-300">
+                    {tech.nombre}
+                  </h3>
+                  
+                  <!-- Barra de progreso -->
+                  <div class="space-y-1">
+                    <div class="flex justify-between items-center">
+                      <span class="text-xs text-text/60">{tech.porcentaje}%</span>
+                    </div>
+                    <div class="w-full bg-primary/20 rounded-full h-1.5 overflow-hidden">
+                      <div 
+                        class="bg-primary h-full rounded-full transition-all duration-1000 ease-out"
+                        style={`width: ${tech.porcentaje}%`}
+                      ></div>
+                    </div>
+                  </div>
+
+                  <!-- Badge de categoría -->
+                  <div class="mt-3 flex justify-center">
+                    <span class="text-xs px-2 py-1 bg-primary/10 rounded-full text-text/70 border border-primary/20">
+                      {tech.categoria === "lenguaje" ? "Lenguaje" : 
+                       tech.categoria === "framework" ? "Framework" : 
+                       tech.categoria === "base-datos" ? "Base de Datos" : 
+                       tech.categoria === "cloud" ? "Cloud" : "Herramienta"}
+                    </span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+    <style>
+      html.lenis,
+      html.lenis body {
+        height: auto;
+      }
+
+      .lenis.lenis-smooth {
+        scroll-behavior: auto !important;
+      }
+
+      .lenis.lenis-smooth [data-lenis-prevent] {
+        overscroll-behavior: contain;
+      }
+
+      .lenis.lenis-stopped {
+        overflow: hidden;
+      }
+
+      .lenis.lenis-scrolling iframe {
+        pointer-events: none;
+      }
+
+      .wrapper {
+        position: relative;
+      }
+    </style>
+
+  </main>
+
+</Layout>

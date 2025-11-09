@@ -1,0 +1,527 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import { proyectos } from '@/data/projects';
+import ProjectIcon from '@/components/ProjectIcon';
+
+// Importar todas las imágenes de assets dinámicamente
+const imageModules = import.meta.glob<{ default: ImageMetadata }>('../assets/**/*.{png,jpg,jpeg,webp}', {
+  eager: true,
+  import: 'default',
+});
+
+const proyectoDestacado = proyectos.find(p => p.destacado);
+const otrosProyectos = proyectos.filter(p => !p.destacado);
+
+// Función para obtener las imágenes del proyecto destacado desde projects.ts
+function getProjectImages(proyecto: typeof proyectoDestacado) {
+  if (!proyecto?.imagenes) return [];
+  
+  return proyecto.imagenes.map((imgPath) => {
+    // Convertir la ruta de projects.ts a la ruta relativa que usa import.meta.glob
+    // "src/assets/valefy/1.png" -> "../assets/valefy/1.png"
+    const relativePath = imgPath.replace('src/', '../');
+    
+    // Buscar la imagen en los módulos importados
+    const imageModule = imageModules[relativePath];
+    return imageModule || null;
+  }).filter(Boolean);
+}
+
+const imagenesProyectoDestacado = proyectoDestacado ? getProjectImages(proyectoDestacado) : [];
+---
+
+<Layout>
+  <main class="relative z-10">
+    <!-- Título principal -->
+    <section class="w-screen flex items-start justify-end relative overflow-hidden min-h-[40vh]">
+      <div class="p-4 pt-6 relative z-10">
+        <h1 class="text-8xl md:text-9xl lg:text-[12rem] font-extrabold leading-none drop-shadow-lg bg-gradient-to-r from-primary via-text to-primary bg-clip-text text-transparent font-modamode tracking-tight select-none">
+          PROYECTOS
+        </h1>
+      </div>
+    </section>
+
+    <!-- Proyecto Destacado -->
+    {proyectoDestacado && (
+      <section class="relative py-24 px-8 overflow-hidden bg-primary rounded-2xl">
+        <div
+          class="absolute bottom-0 left-0 right-0 top-0 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:54px_54px] opacity-40"
+        >
+        </div>
+        <div class="relative z-10 max-w-7xl mx-auto">
+          <!-- Badge Destacado -->
+          <div class="flex items-center justify-center mb-12 fade-in-up">
+            <div class="px-6 py-3 bg-background/20 backdrop-blur-md rounded-full border border-background/30 shadow-lg">
+              <span class="text-sm font-bold flex items-center gap-2 text-background">
+                <ProjectIcon iconName="Star" className="w-5 h-5 fill-background text-background" client:load />
+                PROYECTO DESTACADO
+              </span>
+            </div>
+          </div>
+
+          <!-- Header Section -->
+          <div class="text-center mb-16 fade-in-up">
+            <h2 class="2xl:text-7xl text-5xl font-semibold tracking-tight leading-[120%] mb-6 font-modamode text-background">
+              {proyectoDestacado.titulo}
+            </h2>
+          </div>
+
+          <!-- Featured Project Content -->
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-12">
+            <!-- Carrusel de Imágenes -->
+            <div class="relative group fade-in-left">
+              <div class="absolute -inset-4 bg-background/20 rounded-3xl blur-2xl group-hover:blur-3xl transition-all duration-700 opacity-50 group-hover:opacity-70"></div>
+              <div class="relative overflow-hidden rounded-2xl border border-background/20 group-hover:border-background/40 transition-all duration-300 shadow-2xl">
+                <!-- Carrusel Container -->
+                <div class="carousel-container relative aspect-16/9">
+                  <div class="carousel-wrapper relative w-full h-full overflow-hidden">
+                    {imagenesProyectoDestacado && imagenesProyectoDestacado.length > 0 ? (
+                      imagenesProyectoDestacado.map((img: any, index: number) => (
+                        <div
+                          class={`carousel-slide absolute inset-0 transition-opacity duration-500 ${
+                            index === 0 ? 'opacity-100' : 'opacity-0'
+                          }`}
+                          data-slide-index={index}
+                        >
+                          <img
+                            src={img.src}
+                            alt={`${proyectoDestacado.titulo} - Imagen ${index + 1}`}
+                            class="w-full h-full object-cover"
+                          />
+                        </div>
+                      ))
+                    ) : (
+                      <div class="carousel-slide absolute inset-0 opacity-100">
+                        <img
+                          src={proyectoDestacado.imagen}
+                          alt={proyectoDestacado.titulo}
+                          class="w-full h-full object-cover"
+                        />
+                      </div>
+                    )}
+                  </div>
+                  
+                  <!-- Controles del Carrusel -->
+                  {imagenesProyectoDestacado && imagenesProyectoDestacado.length > 1 && (
+                    <>
+                      <!-- Botón Anterior -->
+                      <button
+                        class="carousel-btn carousel-btn-prev absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 
+                        bg-white/30 backdrop-blur-sm rounded-full border border-background/30 hover:bg-white/50 
+                        transition-all duration-300 flex items-center justify-center z-10 shadow-lg hover:cursor-pointer"
+                        aria-label="Imagen anterior"
+                      >
+                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                        </svg>
+                      </button>
+                      
+                      <!-- Botón Siguiente -->
+                      <button
+                        class="carousel-btn carousel-btn-next absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 
+                        bg-white/30 backdrop-blur-sm rounded-full border border-background/30 hover:bg-white/50
+                        transition-all duration-300 flex items-center justify-center z-10 shadow-lg hover:cursor-pointer"
+                        aria-label="Imagen siguiente"
+                      >
+                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                        </svg>
+                      </button>
+                      
+                      <!-- Indicadores -->
+                      <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-10">
+                        {imagenesProyectoDestacado.map((_: any, index: number) => (
+                          <button
+                            class={`carousel-indicator w-2 h-2 rounded-full transition-all duration-300 ${
+                              index === 0 ? 'bg-white w-8' : 'bg-white/50 hover:bg-white/40'
+                            }`}
+                            data-indicator-index={index}
+                            aria-label={`Ir a imagen ${index + 1}`}
+                          ></button>
+                        ))}
+                      </div>
+                    </>
+                  )}
+                </div>
+              </div>
+            </div>
+
+            <!-- Descripción -->
+            <div class="space-y-6 fade-in-right bg-background/5 backdrop-blur-sm rounded-2xl p-8 border border-background/20 hover:border-background/40 transition-all duration-300 shadow-xl">
+              <div class="bg-background/5 backdrop-blur-sm rounded-2xl p-8 border border-background/20 hover:border-background/40 transition-all duration-300 shadow-xl">
+                <h3 class="text-2xl font-bold mb-4 text-background font-modamode font-bold">Descripción</h3>
+                <p class="text-lg leading-relaxed text-background/90 mb-4 ">
+                  {proyectoDestacado.descripcion}
+                </p>
+                {proyectoDestacado.descripcionLarga && (
+                  <p class="text-base leading-relaxed text-background/80 rounded-2xl p-4 border border-background/20 
+                  hover:border-background/40 transition-all duration-300 shadow-xl bg-white/10">
+                    {proyectoDestacado.descripcionLarga}
+                  </p>
+                )}
+              </div>
+
+              <!-- Tecnologías -->
+              <div class="bg-background/5 backdrop-blur-sm rounded-2xl p-8 border border-background/20 hover:border-background/40 transition-all duration-300 shadow-xl">
+                <h3 class="text-xl font-bold mb-4 text-background font-modamode">Tecnologías</h3>
+                <div class="flex flex-wrap gap-3">
+                  {proyectoDestacado.tecnologias.map((tech) => (
+                    <span class="px-4 py-2 bg-white/10 rounded-full text-sm font-medium border border-background/30 text-background shadow-md">
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              <!-- Enlaces -->
+              <div class="flex gap-4">
+                {proyectoDestacado.enlaces.github && (
+                  <a
+                    href={proyectoDestacado.enlaces.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="flex-1 px-6 py-4 bg-white/10 backdrop-blur-md rounded-xl border border-background/30 hover:bg-white/20 hover:border-background/50 transition-all duration-300 text-center font-semibold text-background shadow-lg hover:shadow-xl transform hover:-translate-y-1"
+                  >
+                    Ver Código
+                  </a>
+                )}
+                {proyectoDestacado.enlaces.demo && (
+                  <a
+                    href={proyectoDestacado.enlaces.demo}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="flex-1 px-6 py-4 bg-background text-primary rounded-xl border border-background hover:bg-background/90 transition-all duration-300 text-center font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-1"
+                  >
+                    Ver Demo
+                  </a>
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    )}
+
+    <!-- Otros Proyectos -->
+    <section class="relative py-24 px-8 overflow-hidden">
+      <div
+        class="absolute bottom-0 left-0 right-0 top-0 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:54px_54px] opacity-20"
+      >
+      </div>
+      <div class="relative z-10 max-w-7xl mx-auto">
+        <!-- Header Section -->
+        <div class="mb-16 text-center fade-in-up">
+          <h2 class="2xl:text-7xl text-5xl font-semibold tracking-tight leading-[120%] mb-4 font-modamode text-text">
+            OTROS PROYECTOS
+          </h2>
+          <div class="w-24 h-1 bg-primary mx-auto"></div>
+        </div>
+
+        <!-- Projects Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {otrosProyectos.map((proyecto) => (
+            <div class="group relative overflow-hidden fade-in-up">
+              <!-- Card Background with Hover Effect -->
+              <div class="absolute inset-0 bg-gradient-to-br from-primary/10 to-primary/5 backdrop-blur-sm rounded-2xl transform transition-transform duration-500"></div>
+              
+              <!-- Border Glow Effect -->
+              <div class="absolute inset-0 rounded-2xl border border-primary/20 group-hover:border-primary/40 transition-all duration-300"></div>
+              
+              <!-- Content Container -->
+              <div class="relative p-8 h-full flex flex-col">
+                <!-- Image -->
+                <div class="relative overflow-hidden rounded-t-2xl mb-6 -mx-2 -mt-2">
+                  <img
+                    src={proyecto.imagen}
+                    alt={proyecto.titulo}
+                    class="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-700"
+                  />
+                  <div class="absolute top-4 right-4 z-20 bg-background/80 backdrop-blur-sm rounded-lg p-2 border border-primary/20">
+                    {proyecto.icono && (
+                      <ProjectIcon iconName={proyecto.icono} className="w-6 h-6 text-primary" client:load />
+                    )}
+                  </div>
+                </div>
+
+                <!-- Category and Year -->
+                <div class="flex items-center justify-between mb-4">
+                  <div class="inline-block px-4 py-1 bg-primary/10 backdrop-blur-md rounded-full text-sm font-medium mb-2">
+                    {proyecto.año}
+                  </div>
+                  <span class="px-3 py-1 bg-primary/10 rounded-full text-xs font-medium text-text">
+                    {proyecto.categoria}
+                  </span>
+                </div>
+                
+                <!-- Title -->
+                <h3 class="text-2xl font-bold mb-4 text-text">
+                  {proyecto.titulo}
+                </h3>
+                
+                <!-- Description -->
+                <p class="text-text/80 mb-6 flex-1">
+                  {proyecto.descripcion}
+                </p>
+                
+                <!-- Technologies -->
+                <div class="mt-auto flex flex-wrap gap-2 mb-6">
+                  {proyecto.tecnologias.map((tech) => (
+                    <span class="px-3 py-1 bg-primary/10 rounded-full text-xs text-text">
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+                
+                <!-- Links -->
+                <div class="flex gap-2">
+                  {proyecto.enlaces.github && (
+                    <a
+                      href={proyecto.enlaces.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="flex-1 px-4 py-2 bg-primary/10 hover:bg-primary/20 rounded-lg text-center text-sm font-medium transition-all duration-300 border border-primary/20 hover:border-primary/40 text-text"
+                    >
+                      GitHub
+                    </a>
+                  )}
+                  {proyecto.enlaces.demo && (
+                    <a
+                      href={proyecto.enlaces.demo}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="flex-1 px-4 py-2 bg-primary text-background hover:bg-primary/90 rounded-lg text-center text-sm font-medium transition-all duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-0.5"
+                    >
+                      Demo
+                    </a>
+                  )}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer Section -->
+    <section class="relative py-32 px-8 overflow-hidden">
+      <div class="absolute inset-0 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:54px_54px] opacity-10"></div>
+      <div class="relative z-10 max-w-4xl mx-auto text-center">
+        <h2 class="2xl:text-6xl text-4xl font-semibold tracking-tight leading-[120%] mb-6 text-text fade-in-up">
+          ¿Te gusta lo que ves?
+        </h2>
+        <p class="text-xl text-text/80 mb-8 fade-in-up">
+          ¡No dudes en contactarme para trabajar juntos!
+        </p>
+        <a
+          href="/contacto"
+          class="inline-block px-8 py-4 bg-primary text-background rounded-xl font-semibold hover:bg-primary/90 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 fade-in-up"
+        >
+          Contáctame
+        </a>
+      </div>
+    </section>
+
+    <style>
+      @keyframes fade-in {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      @keyframes fade-in-up {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes fade-in-left {
+        from {
+          opacity: 0;
+          transform: translateX(-30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+
+      @keyframes fade-in-right {
+        from {
+          opacity: 0;
+          transform: translateX(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+
+      .animate-fade-in {
+        animation: fade-in 1s ease-out;
+      }
+
+      /* Intersection Observer para animaciones on-scroll */
+      .fade-in-up,
+      .fade-in-left,
+      .fade-in-right {
+        opacity: 0;
+      }
+
+      .fade-in-up.visible {
+        animation: fade-in-up 0.8s ease-out forwards;
+      }
+
+      .fade-in-left.visible {
+        animation: fade-in-left 0.8s ease-out forwards;
+      }
+
+      .fade-in-right.visible {
+        animation: fade-in-right 0.8s ease-out forwards;
+      }
+    </style>
+
+    <script>
+      // Intersection Observer para animaciones on-scroll
+      function initAnimations() {
+        const observerOptions = {
+          threshold: 0.1,
+          rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              const target = entry.target as HTMLElement;
+              // Agregar delay escalonado para las cards del grid
+              const grid = target.closest('.grid');
+              if (grid && target.classList.contains('fade-in-up')) {
+                const siblings = Array.from(grid.children);
+                const index = siblings.indexOf(target);
+                target.style.animationDelay = `${index * 100}ms`;
+              }
+              target.classList.add('visible');
+              // Dejar de observar una vez que se ha animado
+              observer.unobserve(target);
+            }
+          });
+        }, observerOptions);
+
+        const animatedElements = document.querySelectorAll('.fade-in-up, .fade-in-left, .fade-in-right');
+        animatedElements.forEach((el) => {
+          // Verificar si el elemento ya está visible
+          const rect = el.getBoundingClientRect();
+          const isVisible = rect.top < window.innerHeight && rect.bottom > 0;
+          
+          if (isVisible) {
+            // Si ya es visible, animarlo inmediatamente con un pequeño delay
+            setTimeout(() => {
+              const target = el as HTMLElement;
+              const grid = target.closest('.grid');
+              if (grid && target.classList.contains('fade-in-up')) {
+                const siblings = Array.from(grid.children);
+                const index = siblings.indexOf(target);
+                target.style.animationDelay = `${index * 100}ms`;
+              }
+              target.classList.add('visible');
+            }, 100);
+          } else {
+            // Si no es visible, observarlo
+            observer.observe(el);
+          }
+        });
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initAnimations);
+      } else {
+        initAnimations();
+      }
+
+      // Carrusel de imágenes del proyecto destacado
+      function initCarousel() {
+        const carouselContainer = document.querySelector('.carousel-container');
+        if (!carouselContainer) return;
+
+        const slides = carouselContainer.querySelectorAll('.carousel-slide');
+        const prevBtn = carouselContainer.querySelector('.carousel-btn-prev');
+        const nextBtn = carouselContainer.querySelector('.carousel-btn-next');
+        const indicators = carouselContainer.querySelectorAll('.carousel-indicator');
+
+        if (slides.length <= 1) return;
+
+        let currentIndex = 0;
+
+        function showSlide(index: number) {
+          // Asegurar que el índice esté dentro del rango
+          if (index < 0) {
+            currentIndex = slides.length - 1;
+          } else if (index >= slides.length) {
+            currentIndex = 0;
+          } else {
+            currentIndex = index;
+          }
+
+          // Actualizar slides
+          slides.forEach((slide, i) => {
+            const slideElement = slide as HTMLElement;
+            if (i === currentIndex) {
+              slideElement.style.opacity = '1';
+              slideElement.style.zIndex = '1';
+            } else {
+              slideElement.style.opacity = '0';
+              slideElement.style.zIndex = '0';
+            }
+          });
+
+          // Actualizar indicadores
+          indicators.forEach((indicator, i) => {
+            const indicatorElement = indicator as HTMLElement;
+            if (i === currentIndex) {
+              indicatorElement.classList.add('bg-white', 'w-8');
+              indicatorElement.classList.remove('bg-white/50', 'bg-white/40');
+            } else {
+              indicatorElement.classList.remove('bg-white', 'w-8');
+              indicatorElement.classList.add('bg-white/50');
+            }
+          });
+        }
+
+        // Event listeners para botones
+        if (prevBtn) {
+          prevBtn.addEventListener('click', () => {
+            showSlide(currentIndex - 1);
+          });
+        }
+
+        if (nextBtn) {
+          nextBtn.addEventListener('click', () => {
+            showSlide(currentIndex + 1);
+          });
+        }
+
+        // Event listeners para indicadores
+        indicators.forEach((indicator, index) => {
+          indicator.addEventListener('click', () => {
+            showSlide(index);
+          });
+        });
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initCarousel);
+      } else {
+        initCarousel();
+      }
+    </script>
+
+  </main>
+
+</Layout>
