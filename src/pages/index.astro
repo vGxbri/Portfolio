@@ -5,10 +5,19 @@ import Layout from '@/layouts/Layout.astro';
 <Layout>
 	<main>
 		<section class="h-screen w-screen flex items-end relative overflow-hidden z-0" style="background: transparent;">
-			<div class="w-full p-4 pb-6 relative z-10">
+            <!-- Mobile version using Tailwind -->
+			<div class="w-full pb-6 relative z-10 md:hidden">
+				<h1 class="text-center font-extrabold leading-[0.9] drop-shadow-lg bg-gradient-to-r from-primary via-text to-primary bg-clip-text text-transparent font-modamode tracking-tight select-none text-[clamp(2rem,13.5vw,20rem)]">
+				  <span class="block">GABRIEL</span>
+				  <span class="block">ALMARCHA</span>
+				</h1>
+			</div>
+
+            <!-- Desktop version with script -->
+			<div id="text-wrapper" class="w-full p-4 pb-6 relative z-10 hidden md:block">
 			  <div id="fit-container" class="w-full overflow-hidden">
 				<h1 id="fit-text" class="inline-block font-extrabold leading-none drop-shadow-lg bg-gradient-to-r from-primary via-text to-primary bg-clip-text text-transparent font-modamode tracking-tight select-none">
-				  GABRIEL ALMARCHA
+				  <span id="text-gabriel">GABRIEL</span> <span id="text-almarcha">ALMARCHA</span>
 				</h1>
 			  </div>
 			</div>
@@ -17,33 +26,46 @@ import Layout from '@/layouts/Layout.astro';
 
 	<script>
 		const fit = () => {
-		  const container = document.getElementById('fit-container');
-		  const text = document.getElementById('fit-text');
-		  if (!container || !text) return;
-		  text.style.transform = 'none';
-		  text.style.fontSize = '10px';
-		  text.style.whiteSpace = 'nowrap';
-		  text.style.display = 'inline-block';
-		  text.style.transformOrigin = 'left bottom';
-		  const base = container.clientWidth || window.innerWidth || 1000;
-		  text.style.fontSize = base + 'px';
-		  const textWidth = text.scrollWidth || text.offsetWidth;
-		  if (!textWidth) return;
-		  const scale = (container.clientWidth - 1) / textWidth;
-		  text.style.transform = `scale(${scale})`;
+			const container = document.getElementById('fit-container');
+			const text = document.getElementById('fit-text');
+			if (!container || !text) return;
+
+			// Desktop-only logic
+			text.style.transform = 'none';
+			text.style.fontSize = '10px';
+			text.style.whiteSpace = 'nowrap';
+			text.style.display = 'inline-block';
+			text.style.transformOrigin = 'left bottom';
+			
+			const base = container.clientWidth || 1000;
+			text.style.fontSize = base + 'px';
+			const textWidth = text.scrollWidth || text.offsetWidth;
+			if (!textWidth) return;
+			const scale = (container.clientWidth - 1) / textWidth;
+			text.style.transform = `scale(${scale})`;
 		};
+
+		const handleResize = () => {
+			// The CSS handles showing/hiding, but we only want the script to run on desktop.
+			if (window.innerWidth >= 768) {
+				fit();
+			}
+		};
+
 		const initFit = () => {
-		  fit();
-		  const container = document.getElementById('fit-container');
-		  if (container && 'ResizeObserver' in window) {
-			new ResizeObserver(fit).observe(container);
-		  }
-		  window.addEventListener('resize', fit);
+			const container = document.getElementById('fit-container');
+			if (container && 'ResizeObserver' in window) {
+				const resizeObserver = new ResizeObserver(handleResize);
+				resizeObserver.observe(container);
+			}
+			window.addEventListener('resize', handleResize);
+			handleResize(); // Initial call
 		};
+
 		if (document.readyState !== 'loading') {
-		  initFit();
+			initFit();
 		} else {
-		  document.addEventListener('DOMContentLoaded', initFit);
+			document.addEventListener('DOMContentLoaded', initFit);
 		}
-	  </script>
+	</script>
 </Layout>
