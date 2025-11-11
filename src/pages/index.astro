@@ -62,10 +62,6 @@ import Layout from '@/layouts/Layout.astro';
 			handleResize(); // Initial call
 		};
 
-		if (document.readyState !== 'loading') {
-			initFit();
-		} else {
-			document.addEventListener('DOMContentLoaded', initFit);
-		}
+		window.addEventListener('load', initFit);
 	</script>
 </Layout>
