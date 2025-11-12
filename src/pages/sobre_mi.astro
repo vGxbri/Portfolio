@@ -8,7 +8,7 @@ import { formacionAcademica, experienciaProfesional, habilidades, idiomas, objet
     <!-- Título principal -->
     <section class="w-screen flex items-start justify-end relative overflow-hidden">
       <div class="p-4 pt-6 relative z-10">
-        <h1 class="text-8xl md:text-9xl lg:text-[12rem] font-extrabold leading-none drop-shadow-lg bg-gradient-to-r from-primary via-text to-primary bg-clip-text text-transparent font-modamode tracking-tight select-none">
+        <h1 class="text-6xl sm:text-6xl md:text-8xl lg:text-[12rem] font-extrabold leading-tight drop-shadow-lg bg-gradient-to-r from-primary via-text to-primary bg-clip-text text-transparent font-modamode tracking-tight select-none">
           SOBRE MÍ
         </h1>
       </div>
@@ -17,43 +17,47 @@ import { formacionAcademica, experienciaProfesional, habilidades, idiomas, objet
     <script>
       import Lenis from "lenis";
 
-      const lenis = new Lenis({
-        duration: 1.2,
-        easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      });
+      const isMobile = window.matchMedia('(max-width: 767px)').matches;
 
-      function raf(time: number) {
-        lenis.raf(time);
+      if (!isMobile) {
+        const lenis = new Lenis({
+          duration: 1.2,
+          easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        });
+
+        function raf(time: number) {
+          lenis.raf(time);
+          requestAnimationFrame(raf);
+        }
+
         requestAnimationFrame(raf);
       }
-
-      requestAnimationFrame(raf);
     </script>
 
     <!-- Sticky Element Section -->
     <div class="wrapper">
       <section
-        class="text-white py-64 w-full grid place-content-center sticky top-0"
+        class="text-white py-24 md:py-64 w-full grid place-content-center md:sticky md:top-0"
       >
         <h1
-          class="2xl:text-7xl text-6xl px-8 font-semibold text-center tracking-tight leading-[120%]"
+          class="2xl:text-7xl md:text-6xl sm:text-4xl text-4xl px-4 md:px-8 font-semibold text-center tracking-tight leading-[120%]"
         >
           ¿Quieres conocer más sobre mí? <br /> ¡Continúa hacia abajo! <br /> ⬇
         </h1>
       </section>
 
       <section
-        class="bg-primary text-background w-full sticky top-0 rounded-tr-2xl rounded-tl-2xl overflow-hidden"
+        class="bg-primary text-background w-full md:sticky md:top-0 rounded-tr-2xl rounded-tl-2xl overflow-hidden"
       >
         <div
-          class="absolute bottom-0 left-0 right-0 top-0 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:54px_54px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]"
+          class="absolute bottom-0 left-0 right-0 top-0 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:54px_54px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] hidden md:block"
         >
         </div>
-        <div class="relative z-10 py-24 px-8 h-350">
+        <div class="relative z-10 py-8 md:py-24 px-4 md:px-8">
           <div class="max-w-7xl mx-auto w-full">
             <!-- Header Section -->
-            <div class="text-center mb-18">
-                <h2 class="2xl:text-7xl text-5xl font-semibold text-center tracking-tight leading-[120%] mb-2 font-modamode">
+            <div class="text-center mb-12">
+                <h2 class="2xl:text-7xl md:text-6xl sm:text-5xl text-5xl font-semibold text-center tracking-tight leading-[120%] mb-2 font-modamode">
                   FORMACIÓN ACADÉMICA
                 </h2>
             </div>
@@ -64,7 +68,7 @@ import { formacionAcademica, experienciaProfesional, habilidades, idiomas, objet
               <div class="absolute left-1/2 top-0 bottom-0 transform -translate-x-1/2 w-1 bg-gradient-to-b from-background via-background/40 to-background/20 rounded-full hidden lg:block"></div>
               
               <!-- Education Items -->
-              <div class="space-y-8">
+              <div class="space-y-6 md:space-y-8">
                 {formacionAcademica.map((formacion, index) => {
                   const isEven = index % 2 === 0;
                   return (
@@ -74,7 +78,7 @@ import { formacionAcademica, experienciaProfesional, habilidades, idiomas, objet
                       
                       <!-- Content Card -->
                       <div class={`w-full lg:w-5/12 ${isEven ? 'lg:mr-auto lg:pr-16' : 'lg:ml-auto lg:pl-16'}`}>
-                        <div class="bg-background/5 backdrop-blur-sm rounded-2xl p-6 border border-background/20 hover:border-background/40 transition-all duration-300 group">
+                        <div class="bg-background/5 backdrop-blur-sm rounded-2xl p-4 md:p-6 border border-background/20 hover:border-background/40 transition-all duration-300 group">
                           <div class="flex items-start space-x-4">
                             <div class="w-14 h-14 bg-background/20 rounded-xl flex items-center justify-center transition-transform duration-300">
                               <span class="text-2xl">{formacion.icono}</span>
@@ -102,17 +106,17 @@ import { formacionAcademica, experienciaProfesional, habilidades, idiomas, objet
 
       <!-- Experiencia Profesional -->
       <section
-        class="bg-background text-text w-full sticky top-0 overflow-hidden"
+        class="bg-background text-text w-full md:sticky md:top-0 overflow-hidden"
       >
         <div
-          class="absolute bottom-0 left-0 right-0 top-0 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:54px_54px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]"
+          class="absolute bottom-0 left-0 right-0 top-0 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:54px_54px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] hidden md:block"
         >
         </div>
-        <div class="relative z-10 py-24 px-8">
+        <div class="relative z-10 py-12 md:py-24 px-4 md:px-8">
           <div class="max-w-7xl mx-auto w-full">
             <!-- Header Section -->
             <div class="mb-16">
-                <h2 class="2xl:text-7xl text-5xl font-semibold tracking-tight leading-[120%] mb-4 font-modamode">
+                <h2 class="2xl:text-7xl md:text-5xl sm:text-4xl text-3xl font-semibold tracking-tight leading-[120%] mb-4 font-modamode">
                   EXPERIENCIA
                 </h2>
                 <div class="w-24 h-1 bg-primary"></div>
@@ -129,14 +133,14 @@ import { formacionAcademica, experienciaProfesional, habilidades, idiomas, objet
                   <div class="absolute inset-0 rounded-2xl border border-primary/20 group-hover:border-primary/40 transition-all duration-300"></div>
                   
                   <!-- Content Container -->
-                  <div class="relative p-8 h-full flex flex-col">
+                  <div class="relative p-6 md:p-8 h-full flex flex-col">
                     <!-- Year Badge -->
                     <div class="inline-block px-4 py-1 bg-primary/10 backdrop-blur-md rounded-full text-sm font-medium mb-6">
                       {experiencia.periodo}
                     </div>
                     
                     <!-- Title -->
-                    <h3 class="text-2xl font-bold mb-4">{experiencia.titulo}</h3>
+                    <h3 class="text-xl md:text-2xl font-bold mb-4">{experiencia.titulo}</h3>
                     
                     <!-- Company -->
                     <div class="mb-4">
@@ -147,7 +151,7 @@ import { formacionAcademica, experienciaProfesional, habilidades, idiomas, objet
                     </div>
                     
                     <!-- Description -->
-                    <p class="text-text/80 mb-6">{experiencia.descripcion}</p>
+                    <p class="text-sm md:text-base text-text/80 mb-6">{experiencia.descripcion}</p>
                     
                     <!-- Skills Tags -->
                     <div class="mt-auto flex flex-wrap gap-2">
@@ -165,23 +169,23 @@ import { formacionAcademica, experienciaProfesional, habilidades, idiomas, objet
 
       <!-- Habilidades y Perfil -->
       <section
-        class="bg-primary text-background w-full sticky top-0 overflow-hidden"
+        class="bg-primary text-background w-full md:sticky md:top-0 overflow-hidden"
       >
         <div
-          class="absolute bottom-0 left-0 right-0 top-0 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:54px_54px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]"
+          class="absolute bottom-0 left-0 right-0 top-0 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:54px_54px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] hidden md:block"
         >
         </div>
-        <div class="relative z-10 py-24 px-8">
+        <div class="relative z-10 py-12 md:py-24 px-4 md:px-8">
           <div class="max-w-7xl mx-auto w-full">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-16">
               <!-- Columna Izquierda: Habilidades y Objetivo Profesional -->
               <div class="space-y-12">
                 <!-- Habilidades (Soft Skills) -->
                 <div>
-                  <h2 class="text-4xl font-semibold tracking-tight leading-[120%] mb-6 font-modamode">
+                  <h2 class="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tight leading-[120%] mb-6 font-modamode">
                     HABILIDADES
                   </h2>
-                  <div class="grid grid-cols-2 gap-4">
+                  <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     {habilidades.map((habilidad) => (
                       <div class="bg-background/5 backdrop-blur-sm rounded-lg p-4 border border-background/20 hover:border-background/40 transition-all duration-300 group">
                         <h3 class="font-semibold mb-2 text-background group-hover:text-background/90 transition-colors text-sm">
@@ -197,7 +201,7 @@ import { formacionAcademica, experienciaProfesional, habilidades, idiomas, objet
 
                 <!-- Objetivo Profesional -->
                 <div>
-                  <h2 class="text-4xl font-semibold tracking-tight leading-[120%] mb-6 font-modamode">
+                  <h2 class="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tight leading-[120%] mb-6 font-modamode">
                     OBJETIVO PROFESIONAL
                   </h2>
                   <div class="bg-background/5 backdrop-blur-sm rounded-lg p-6 border border-background/20">
@@ -212,7 +216,7 @@ import { formacionAcademica, experienciaProfesional, habilidades, idiomas, objet
               <div class="space-y-12">
                 <!-- Idiomas -->
                 <div>
-                  <h2 class="text-4xl font-semibold tracking-tight leading-[120%] mb-6 font-modamode">
+                  <h2 class="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tight leading-[120%] mb-6 font-modamode">
                     IDIOMAS
                   </h2>
                   <div class="space-y-4">
@@ -242,17 +246,17 @@ import { formacionAcademica, experienciaProfesional, habilidades, idiomas, objet
 
       <!-- Tecnologías -->
       <section
-        class="bg-background text-text w-full sticky top-0 overflow-hidden"
+        class="bg-background text-text w-full md:sticky md:top-0 overflow-hidden"
       >
         <div
-          class="absolute bottom-0 left-0 right-0 top-0 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:54px_54px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]"
+          class="absolute bottom-0 left-0 right-0 top-0 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:54px_54px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] hidden md:block"
         >
         </div>
-        <div class="relative z-10 py-24 px-8">
+        <div class="relative z-10 py-12 md:py-24 px-4 md:px-8">
           <div class="max-w-7xl mx-auto w-full">
             <!-- Header -->
             <div class="mb-12 text-center">
-              <h2 class="2xl:text-7xl text-5xl font-semibold tracking-tight leading-[120%] mb-4 font-modamode">
+              <h2 class="2xl:text-7xl md:text-5xl sm:text-4xl text-3xl font-semibold tracking-tight leading-[120%] mb-4 font-modamode">
                 TECNOLOGÍAS
               </h2>
               <div class="w-24 h-1 bg-primary mx-auto"></div>
