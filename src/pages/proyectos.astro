@@ -35,7 +35,7 @@ const imagenesProyectoDestacado = proyectoDestacado ? getProjectImages(proyectoD
     <!-- Título principal -->
     <section class="w-screen flex items-start justify-end relative overflow-hidden min-h-[40vh]">
       <div class="p-4 pt-6 relative z-10">
-        <h1 class="text-8xl md:text-9xl lg:text-[12rem] font-extrabold leading-none drop-shadow-lg bg-gradient-to-r from-primary via-text to-primary bg-clip-text text-transparent font-modamode tracking-tight select-none">
+        <h1 class="text-5xl sm:text-6xl md:text-8xl lg:text-[12rem] font-extrabold leading-tight drop-shadow-lg bg-gradient-to-r from-primary via-text to-primary bg-clip-text text-transparent font-modamode tracking-tight select-none">
           PROYECTOS
         </h1>
       </div>
@@ -50,7 +50,7 @@ const imagenesProyectoDestacado = proyectoDestacado ? getProjectImages(proyectoD
         </div>
         <div class="relative z-10 max-w-7xl mx-auto">
           <!-- Badge Destacado -->
-          <div class="flex items-center justify-center mb-12 fade-in-up">
+          <div class="flex items-center justify-center mb-12">
             <div class="px-6 py-3 bg-background/20 backdrop-blur-md rounded-full border border-background/30 shadow-lg">
               <span class="text-sm font-bold flex items-center gap-2 text-background">
                 <ProjectIcon iconName="Star" className="w-5 h-5 fill-background text-background" client:load />
@@ -60,7 +60,7 @@ const imagenesProyectoDestacado = proyectoDestacado ? getProjectImages(proyectoD
           </div>
 
           <!-- Header Section -->
-          <div class="text-center mb-16 fade-in-up">
+          <div class="text-center mb-16">
             <h2 class="2xl:text-7xl text-5xl font-semibold tracking-tight leading-[120%] mb-6 font-modamode text-background">
               {proyectoDestacado.titulo}
             </h2>
@@ -69,7 +69,7 @@ const imagenesProyectoDestacado = proyectoDestacado ? getProjectImages(proyectoD
           <!-- Featured Project Content -->
           <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-12">
             <!-- Carrusel de Imágenes -->
-            <div class="relative group fade-in-left">
+            <div class="relative group">
               <div class="absolute -inset-4 bg-background/20 rounded-3xl blur-2xl group-hover:blur-3xl transition-all duration-700 opacity-50 group-hover:opacity-70"></div>
               <div class="relative overflow-hidden rounded-2xl border border-background/20 group-hover:border-background/40 transition-all duration-300 shadow-2xl">
                 <!-- Carrusel Container -->
@@ -147,7 +147,7 @@ const imagenesProyectoDestacado = proyectoDestacado ? getProjectImages(proyectoD
             </div>
 
             <!-- Descripción -->
-            <div class="space-y-6 fade-in-right bg-background/5 backdrop-blur-sm rounded-2xl p-8 border border-background/20 hover:border-background/40 transition-all duration-300 shadow-xl">
+            <div class="space-y-6 bg-background/5 backdrop-blur-sm rounded-2xl p-8 border border-background/20 hover:border-background/40 transition-all duration-300 shadow-xl">
               <div class="bg-background/5 backdrop-blur-sm rounded-2xl p-8 border border-background/20 hover:border-background/40 transition-all duration-300 shadow-xl">
                 <h3 class="text-2xl font-bold mb-4 text-background font-modamode font-bold">Descripción</h3>
                 <p class="text-lg leading-relaxed text-background/90 mb-4 ">
@@ -210,7 +210,7 @@ const imagenesProyectoDestacado = proyectoDestacado ? getProjectImages(proyectoD
       </div>
       <div class="relative z-10 max-w-7xl mx-auto">
         <!-- Header Section -->
-        <div class="mb-16 text-center fade-in-up">
+        <div class="mb-16 text-center">
           <h2 class="2xl:text-7xl text-5xl font-semibold tracking-tight leading-[120%] mb-4 font-modamode text-text">
             OTROS PROYECTOS
           </h2>
@@ -220,7 +220,7 @@ const imagenesProyectoDestacado = proyectoDestacado ? getProjectImages(proyectoD
         <!-- Projects Grid -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {otrosProyectos.map((proyecto) => (
-            <div class="group relative overflow-hidden fade-in-up">
+            <div class="group relative overflow-hidden">
               <!-- Card Background with Hover Effect -->
               <div class="absolute inset-0 bg-gradient-to-br from-primary/10 to-primary/5 backdrop-blur-sm rounded-2xl transform transition-transform duration-500"></div>
               
@@ -306,145 +306,22 @@ const imagenesProyectoDestacado = proyectoDestacado ? getProjectImages(proyectoD
     <section class="relative py-32 px-8 overflow-hidden">
       <div class="absolute inset-0 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:54px_54px] opacity-10"></div>
       <div class="relative z-10 max-w-4xl mx-auto text-center">
-        <h2 class="2xl:text-6xl text-4xl font-semibold tracking-tight leading-[120%] mb-6 text-text fade-in-up">
+        <h2 class="2xl:text-6xl text-4xl font-semibold tracking-tight leading-[120%] mb-6 text-text">
           ¿Te gusta lo que ves?
         </h2>
-        <p class="text-xl text-text/80 mb-8 fade-in-up">
+        <p class="text-xl text-text/80 mb-8">
           ¡No dudes en contactarme para trabajar juntos!
         </p>
         <a
           href="/contacto"
-          class="inline-block px-8 py-4 bg-primary text-background rounded-xl font-semibold hover:bg-primary/90 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 fade-in-up"
+          class="inline-block px-8 py-4 bg-primary text-background rounded-xl font-semibold hover:bg-primary/90 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
         >
           Contáctame
         </a>
       </div>
     </section>
 
-    <style>
-      @keyframes fade-in {
-        from {
-          opacity: 0;
-        }
-        to {
-          opacity: 1;
-        }
-      }
-
-      @keyframes fade-in-up {
-        from {
-          opacity: 0;
-          transform: translateY(30px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-
-      @keyframes fade-in-left {
-        from {
-          opacity: 0;
-          transform: translateX(-30px);
-        }
-        to {
-          opacity: 1;
-          transform: translateX(0);
-        }
-      }
-
-      @keyframes fade-in-right {
-        from {
-          opacity: 0;
-          transform: translateX(30px);
-        }
-        to {
-          opacity: 1;
-          transform: translateX(0);
-        }
-      }
-
-      .animate-fade-in {
-        animation: fade-in 1s ease-out;
-      }
-
-      /* Intersection Observer para animaciones on-scroll */
-      .fade-in-up,
-      .fade-in-left,
-      .fade-in-right {
-        opacity: 0;
-      }
-
-      .fade-in-up.visible {
-        animation: fade-in-up 0.8s ease-out forwards;
-      }
-
-      .fade-in-left.visible {
-        animation: fade-in-left 0.8s ease-out forwards;
-      }
-
-      .fade-in-right.visible {
-        animation: fade-in-right 0.8s ease-out forwards;
-      }
-    </style>
-
     <script>
-      // Intersection Observer para animaciones on-scroll
-      function initAnimations() {
-        const observerOptions = {
-          threshold: 0.1,
-          rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              const target = entry.target as HTMLElement;
-              // Agregar delay escalonado para las cards del grid
-              const grid = target.closest('.grid');
-              if (grid && target.classList.contains('fade-in-up')) {
-                const siblings = Array.from(grid.children);
-                const index = siblings.indexOf(target);
-                target.style.animationDelay = `${index * 100}ms`;
-              }
-              target.classList.add('visible');
-              // Dejar de observar una vez que se ha animado
-              observer.unobserve(target);
-            }
-          });
-        }, observerOptions);
-
-        const animatedElements = document.querySelectorAll('.fade-in-up, .fade-in-left, .fade-in-right');
-        animatedElements.forEach((el) => {
-          // Verificar si el elemento ya está visible
-          const rect = el.getBoundingClientRect();
-          const isVisible = rect.top < window.innerHeight && rect.bottom > 0;
-          
-          if (isVisible) {
-            // Si ya es visible, animarlo inmediatamente con un pequeño delay
-            setTimeout(() => {
-              const target = el as HTMLElement;
-              const grid = target.closest('.grid');
-              if (grid && target.classList.contains('fade-in-up')) {
-                const siblings = Array.from(grid.children);
-                const index = siblings.indexOf(target);
-                target.style.animationDelay = `${index * 100}ms`;
-              }
-              target.classList.add('visible');
-            }, 100);
-          } else {
-            // Si no es visible, observarlo
-            observer.observe(el);
-          }
-        });
-      }
-
-      if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initAnimations);
-      } else {
-        initAnimations();
-      }
-
       // Carrusel de imágenes del proyecto destacado
       function initCarousel() {
         const carouselContainer = document.querySelector('.carousel-container');
