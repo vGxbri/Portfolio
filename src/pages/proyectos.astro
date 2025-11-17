@@ -4,7 +4,7 @@ import { proyectos } from '@/data/projects';
 import ProjectIcon from '@/components/ProjectIcon';
 
 // Importar todas las imágenes de assets dinámicamente
-const imageModules = import.meta.glob<{ default: ImageMetadata }>('../assets/**/*.{png,jpg,jpeg,webp}', {
+const imageModules = import.meta.glob<ImageMetadata>('../assets/**/*.{png,jpg,jpeg,webp}', {
   eager: true,
   import: 'default',
 });
@@ -232,7 +232,7 @@ const imagenesProyectoDestacado = proyectoDestacado ? getProjectImages(proyectoD
                 <!-- Image -->
                 <div class="relative overflow-hidden rounded-t-2xl mb-6 -mx-2 -mt-2">
                   <img
-                    src={proyecto.imagen}
+                    src={imageModules[proyecto.imagen.replace('src/', '../')]?.src || proyecto.imagen}
                     alt={proyecto.titulo}
                     class="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-700"
                   />
