@@ -1,4 +1,4 @@
-import { Rocket, Book, Volleyball, Headphones, BarChart3, PenTool, Star } from 'lucide-react';
+import { Rocket, Book, Volleyball, Headphones, BarChart3, PenTool, Star, Gamepad2, Smartphone, MapPin, Keyboard } from 'lucide-react';
 import type { ComponentProps } from 'react';
 
 type IconComponent = React.ComponentType<ComponentProps<'svg'>>;
@@ -10,7 +10,11 @@ const iconMap: Record<string, IconComponent> = {
   Headphones,
   BarChart3,
   PenTool,
-  Star
+  Star,
+  Gamepad2,
+  Smartphone,
+  MapPin,
+  Keyboard
 };
 
 interface ProjectIconProps {

@@ -1,23 +1,26 @@
 ---
-import StaggeredMenu from '../premade/menu';
+import StaggeredMenu from "../premade/menu";
 
 const menuItems = [
-  { label: 'Principal', ariaLabel: 'Go to home page', link: '/' },
-  { label: 'Sobre mí', ariaLabel: 'Learn about us', link: '/sobre_mi' },
-  { label: 'Proyectos', ariaLabel: 'View our services', link: '/proyectos' },
-  { label: 'Contacto', ariaLabel: 'Get in touch', link: '/contacto' }
+  { label: "Principal", ariaLabel: "Go to home page", link: "/" },
+  { label: "Sobre mí", ariaLabel: "Learn about us", link: "/sobre_mi" },
+  { label: "Proyectos", ariaLabel: "View our services", link: "/proyectos" },
+  { label: "Contacto", ariaLabel: "Get in touch", link: "/contacto" },
 ];
 
 const socialItems = [
-  { label: 'Instagram', link: 'https://instagram.com/gxbri.alm' },
-  { label: 'GitHub', link: 'https://github.com/vGxbri' },
-  { label: 'LinkedIn', link: 'https://www.linkedin.com/in/gabriel-almarcha-martinez-5915b91b7/' }
+  { label: "Instagram", link: "https://instagram.com/gxbri.alm" },
+  { label: "GitHub", link: "https://github.com/vGxbri" },
+  {
+    label: "LinkedIn",
+    link: "https://www.linkedin.com/in/gabriel-almarcha-martinez-5915b91b7/",
+  },
 ];
 ---
 
 <div class="fixed top-0 left-0 w-screen h-screen z-50 pointer-events-none">
   <div class="pointer-events-auto">
-    <StaggeredMenu 
+    <StaggeredMenu
       client:load
       position="left"
       items={menuItems}

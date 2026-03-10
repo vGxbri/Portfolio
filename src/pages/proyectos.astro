@@ -234,7 +234,7 @@ const imagenesProyectoDestacado = proyectoDestacado ? getProjectImages(proyectoD
                   <img
                     src={imageModules[proyecto.imagen.replace('src/', '../')]?.src || proyecto.imagen}
                     alt={proyecto.titulo}
-                    class="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-700"
+                    class={`w-full h-48 ${proyecto.esImagenSinFondo ? 'object-contain object-center p-4' : 'object-cover'} transition-transform duration-700`}
                   />
                   <div class="absolute top-4 right-4 z-20 bg-background/80 backdrop-blur-sm rounded-lg p-2 border border-primary/20">
                     {proyecto.icono && (
